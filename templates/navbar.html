@@ -1,0 +1,65 @@
+{% load static %}
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+    <a href="#" class="logo me-auto"
+      ><img
+        src="{% static 'assets/img/favicon.png' %}"
+        alt=""
+        class="img-fluid"
+      />
+      JIMMA-CITY</a
+    >
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li>
+          <a
+            class="nav-link scrollto {% if request.path == '/' %}active{% endif %}"
+            href="/"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link scrollto {% if request.path == '/about/' %}active{% endif %}"
+            href="/about/"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link scrollto {% if request.path == '/services/' %}active{% endif %}"
+            href="{% url 'register' %}"
+            >Services</a
+          >
+        </li>
+        {% if request.user.is_authenticated %}
+        <li>
+          <a class="nav-link scrollto" href="{% url 'logoutuser' %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="nav-link login scrollto" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+
+<script>
+  setInterval(function () {
+    var date = new Date();
+    document.getElementById("clock").innerHTML =
+      (date.getHours() < 10 ? "0" : "") +
+      date.getHours() +
+      ":" +
+      (date.getMinutes() < 10 ? "0" : "") +
+      date.getMinutes() +
+      ":" +
+      (date.getSeconds() < 10 ? "0" : "") +
+      date.getSeconds();
+  }, 500);
+</script>
